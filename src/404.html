@@ -1,0 +1,34 @@
+<% var data = {
+  title: 'Страница не найдена',
+	site: 'site.ru',
+	link: 'https://my-site.ru',
+	description: 'Описание страницы',
+	siteName: 'site name',
+	keywords: 'Кючевые слова',
+	body: 'is-404',
+	fileNameJs: '404',
+	fileNameCss: 'style'
+}; %>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<%= _.template( require('./includes/head.html') )(data) %>
+</head>
+<body class="is-404">
+	<header class="header">
+		<%= _.template( require('./includes/header.html') )(data) %>
+	</header>
+	<main role="main" class="main">
+		<section>
+			<h2>my section</h2>
+		</section>
+	</main>
+	<footer role="contentinfo" class="footer">
+		<%= _.template( require('./includes/footer.html') )(data) %>
+	</footer>
+	<!-- JS and CSS-->
+	<%= _.template( require('./includes/style-and-scripts.html') )(data) %>
+	<!-- End JS and CSS-->
+</body>
+</html>

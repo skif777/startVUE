@@ -1,0 +1,41 @@
+<% var data = {
+	pageName: 'index',
+  title: 'Главная',
+	site: 'site.ru',
+	link: 'https://my-site.ru',
+	description: 'Описание страницы',
+	siteName: 'site name',
+	keywords: 'Кючевые слова',
+	body: 'is-home',
+	fileNameJs: 'index',
+	fileNameCss: 'style'
+}; %>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<%= _.template( require('./includes/head.html') )(data) %>
+</head>
+<body class="is-home">
+	<header class="header">
+		<%= _.template( require('./includes/header.html') )(data) %>
+	</header>
+	<main role="main" class="main">
+		<section>
+			<h2>sds ssssss</h2>
+			<%= _.template( require('./includes/_elements/_grids-smartgrid/grids-smartgrid.html') )(data) %>
+		</section>
+	</main>
+	<footer role="contentinfo" class="footer">
+		<%= _.template( require('./includes/footer.html') )(data) %>
+	</footer>
+	<!-- JS and CSS-->
+	<%= _.template( require('./includes/style-and-scripts.html') )(data) %>
+	<!-- End JS and CSS-->
+</body>
+</html>
+
+
+
+
+

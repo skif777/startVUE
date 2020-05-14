@@ -1,0 +1,26 @@
+/**
+ * @subpackage Media Queries
+ * -------------------------- */
+
+@media screen and (min-width: 900px) {
+  .example {
+    font-family: inherit;
+  }
+}
+
+/* @subsection Adaptive font */ 
+@media (min-width: 320px) and (max-width: 959px) {
+  .fontname {
+    font-size: calc(24px + 24 * (100vw - 320px) / (960 - 320));
+    /* При отрицательном наклоне нужно инвертировать контрольные точки */
+    line-height: calc(140% + 6.4 * (100vw - 960px) / (320 - 960));
+  }
+}
+
+/**
+ * @section Print
+ */
+
+/* Регулировка стиля для устройств с высоким разрешением */
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+}

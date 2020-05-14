@@ -1,0 +1,42 @@
+/* 
+ * @package Basic site styles
+ * ----------------------------------------- */
+ 
+// Переменные
+@import '_variables.scss';
+
+// Библиотеки
+@import '_libs.scss';
+
+// Шрифты
+@import '_fonts.scss';
+
+// Components
+@import '_classes/classes.scss';
+
+// Basic
+@import '_basic-content.scss';
+
+// Media
+// @import '_media.scss';
+
+.logo {
+  width: 250px;
+  height: 160px;
+  background: url("../images/1.png") no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+section {
+  display: block;
+  color: firebrick;
+  @include responsiveFont(30px, 13px, $break-lg, 320px);
+  @include row-flex();
+}
+
+body {
+  color: #ddd;
+}
+
