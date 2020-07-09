@@ -13,16 +13,19 @@ const settings = {
 	breakPoints: {
 		lg: {
 			width: '1100px', /* -> @media (max-width: 1100px) */
+			fields: '30px' /* side fields */
 		},
 		md: {
-			width: '960px'
+			width: '960px',
+			fields: '30px' /* side fields */
 		},
 		sm: {
 			width: '780px',
 			fields: '15px' /* set fields only if you want to change container.fields */
 		},
 		xs: {
-			width: '560px'
+			width: '560px',
+			fields: '15px' /* side fields */
 		}
 		/* 
 		We can create any quantity of break points.

@@ -2,9 +2,8 @@
  * @subpackage Fonts
  * -------------------------- */
 
-@import "_mixins/adaptive-font";
 @import "_mixins/font-face";
 
-@include font-face("Montserrat-Regular", "../fonts/Montserrat/Montserrat-Regular.woff2", normal, normal, block, woff woff2);
+@include font-face("Montserrat-Regular", "../fonts/Montserrat/Montserrat-Regular", normal, normal, block, woff2 woff);
 
 

@@ -1,0 +1,33 @@
+// /**
+//  * АДАПТИВНЫЙ МЕЖДУСТРОЧНЫЙ ИНТЕРВАЛ
+//  * Возвраащет адаптивный междустрочнй интервал шрифта между указанными размерами
+//  * @param {number} $fontSize размер шрифта
+//  * @param {number} $lhLarge на какое число умножить $fontSize, чтобы получить наибольший интервал
+//  * @param {number} $lhSmall на какое число умножить $fontSize, чтобы получить наименьший интервал
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-lh($fontSize, $lhLarge, $lhSmall, $widthLarge, $widthSmall) {
+  // http://fvsch.com/code/css-locks/
+  // y = m * x + b - уравнение прямой, где:
+  // y - вертикальная ось с нужными нам шрифтами,
+  // x - горизонтальная ось с шириной экрана (вьюпорта),
+  // b - промежуток между пересечением графика (в данном случае это
+  // функция прямой линии) с вертикальной осью x,
+  // m - наклон прямой (степерь прироста координаты y при каждом увеличении вьюпорта на 1px);
+
+  // Переводим размер line-hieght в px
+  $lhInPxLarge: $fontSize * $lhLarge;
+  $lhInPxSmall: $fontSize * $lhSmall;
+
+  // m = (y2 - y1) / (x2 - x1)
+  $m: ($lhInPxLarge - $lhInPxSmall) / ($widthLarge - $widthSmall);
+
+  // b = y1 - m × x1
+  $b: $lhInPxSmall - ($m * $widthSmall);
+
+  line-height: $lhLarge;
+  @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+    line-height: calc(#{$m} * 100vw + #{$b});
+  }
+}

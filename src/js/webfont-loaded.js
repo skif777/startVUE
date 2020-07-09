@@ -1,7 +1,7 @@
 var html = document.documentElement;
 // Если первое посещение выполняем загрузку шрифтов через fontfaceobserver, при повторно добавляем класс к html
 if (sessionStorage.fontsLoaded) {
-  html.classList.add("webfont-loaded");
+  html.classList.add("font-loaded");
 } else {
   var script = document.createElement("script");
   script.src = "./js/fontfaceobserver.js"; // Изменить папку темы
@@ -17,7 +17,7 @@ if (sessionStorage.fontsLoaded) {
       myFont1.load(),
       Myfont2.load()
     ]).then(function () {
-      html.classList.add("webfont-loaded");
+      html.classList.add("font-loaded");
       sessionStorage.fontsLoaded = true;
       console.log('Шрифты загруженны. Сессия установленна.');
     });

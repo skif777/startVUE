@@ -1,0 +1,213 @@
+// /**
+//  * АДАПТИВНЫЙ PADDING
+//  * Возвращет адаптивный отступ(padding) между указанными размерами если они есть
+//  * @param {number} $paddingTopLarge наибольший размер отступа сверху
+//  * @param {number} $paddingRightLarge наибольший размер отступа справа
+//  * @param {number} $paddingBottomLarge наибольший размер отступа снизу
+//  * @param {number} $paddingLeftLarge наибольший размер отступа слева
+//  * @param {number} $paddingTopSmall наименьший размер отступа сверху
+//  * @param {number} $paddingRightSmall наименьший размер отступа справа
+//  * @param {number} $paddingBottomSmall наименьший размер отступа снизу
+//  * @param {number} $paddingLeftSmall наиеньший размер отступа слева
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-padding(
+  $paddingTopLarge,
+  $paddingRightLarge,
+  $paddingBottomLarge,
+  $paddingLeftLarge,
+  $paddingTopSmall,
+  $paddingRightSmall,
+  $paddingBottomSmall,
+  $paddingLeftSmall,
+  $widthLarge,
+  $widthSmall
+) {
+  $paddingTopM: false;
+  $paddingTopB: false;
+
+  $paddingRightM: false;
+  $paddingRightB: false;
+
+  $paddingBottomM: false;
+  $paddingBottomB: false;
+
+  $paddingLeftM: false;
+  $paddingLeftB: false;
+
+  $checkChange: false;
+
+  // padding top
+  @if ($paddingTopLarge != $paddingTopSmall) {
+    $checkChange: true;
+    padding-top: $paddingTopLarge;
+    $paddingTopM: ($paddingTopLarge - $paddingTopSmall) / ($widthLarge - $widthSmall);
+    $paddingTopB: $paddingTopSmall - ($paddingTopM * $widthSmall);
+  }
+
+  // padding right
+  @if ($paddingRightLarge != $paddingRightSmall) {
+    $checkChange: true;
+    padding-right: $paddingRightLarge;
+    $paddingRightM: ($paddingRightLarge - $paddingRightSmall) / ($widthLarge - $widthSmall);
+    $paddingRightB: $paddingRightSmall - ($paddingRightM * $widthSmall);
+  }
+
+  // padding bottom
+  @if ($paddingBottomLarge != $paddingBottomSmall) {
+    $checkChange: true;
+    padding-bottom: $paddingBottomLarge;
+    $paddingBottomM: ($paddingBottomLarge - $paddingBottomSmall) / ($widthLarge - $widthSmall);
+    $paddingBottomB: $paddingBottomSmall - ($paddingBottomM * $widthSmall);
+  }
+
+  // padding left
+  @if ($paddingLeftLarge != $paddingLeftSmall) {
+    $checkChange: true;
+    padding-left: $paddingLeftLarge;
+    $paddingLeftM: ($paddingLeftLarge - $paddingLeftSmall) / ($widthLarge - $widthSmall);
+    $paddingLeftB: $paddingLeftSmall - ($paddingLeftM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($paddingTopM != false) {
+        padding-top: calc(#{$paddingTopM} * 100vw + #{$paddingTopB});
+      }
+      @if ($paddingRightM != false) {
+        padding-right: calc(#{$paddingRightM} * 100vw + #{$paddingRightB});
+      }
+      @if ($paddingBottomM != false) {
+        padding-bottom: calc(#{$paddingBottomM} * 100vw + #{$paddingBottomB});
+      }
+      @if ($paddingLeftM != false) {
+        padding-left: calc(#{$paddingLeftM} * 100vw + #{$paddingLeftB});
+      }
+    }
+  }
+}
+
+// /**
+//  * АДАПТИВНЫЙ PADDING-TOP
+//  * Возвращет адаптивный отступ(padding-top) между указанными размерами если они есть
+//  * @param {number} $paddingTopLarge наибольший размер отступа сверху
+//  * @param {number} $paddingTopSmall наименьший размер отступа сверху
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-pt($paddingTopLarge, $paddingTopSmall, $widthLarge, $widthSmall) {
+  $paddingTopM: false;
+  $paddingTopB: false;
+
+  $checkChange: false;
+
+  // padding top
+  @if ($paddingTopLarge != $paddingTopSmall) {
+    $checkChange: true;
+    padding-top: $paddingTopLarge;
+    $paddingTopM: ($paddingTopLarge - $paddingTopSmall) / ($widthLarge - $widthSmall);
+    $paddingTopB: $paddingTopSmall - ($paddingTopM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($paddingTopM != false) {
+        padding-top: calc(#{$paddingTopM} * 100vw + #{$paddingTopB});
+      }
+    }
+  }
+}
+
+// /**
+//  * АДАПТИВНЫЙ padding-RIGHT
+//  * Возвращет адаптивный отступ(padding-right) между указанными размерами если они есть
+//  * @param {number} $paddingRightLarge наибольший размер отступа справа
+//  * @param {number} $paddingRightSmall наименьший размер отступа справа
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-pr($paddingRightLarge, $paddingRightSmall, $widthLarge, $widthSmall) {
+  $paddingRightM: false;
+  $paddingRightB: false;
+
+  $checkChange: false;
+
+  // padding right
+  @if ($paddingRightLarge != $paddingRightSmall) {
+    $checkChange: true;
+    padding-right: $paddingRightLarge;
+    $paddingRightM: ($paddingRightLarge - $paddingRightSmall) / ($widthLarge - $widthSmall);
+    $paddingRightB: $paddingRightSmall - ($paddingRightM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($paddingRightM != false) {
+        padding-right: calc(#{$paddingRightM} * 100vw + #{$paddingRightB});
+      }
+    }
+  }
+}
+
+// /**
+//  * АДАПТИВНЫЙ padding-BOTTOM
+//  * Возвращет адаптивный отступ(padding-bottom) между указанными размерами если они есть
+//  * @param {number} $paddingBottomLarge наибольший размер отступа снизу
+//  * @param {number} $paddingBottomSmall наименьший размер отступа снизу
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-pb($paddingBottomLarge, $paddingBottomSmall, $widthLarge, $widthSmall) {
+  $paddingBottomM: false;
+  $paddingBottomB: false;
+
+  $checkChange: false;
+
+  // padding bottom
+  @if ($paddingBottomLarge != $paddingBottomSmall) {
+    $checkChange: true;
+    padding-bottom: $paddingBottomLarge;
+    $paddingBottomM: ($paddingBottomLarge - $paddingBottomSmall) / ($widthLarge - $widthSmall);
+    $paddingBottomB: $paddingBottomSmall - ($paddingBottomM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($paddingBottomM != false) {
+        padding-bottom: calc(#{$paddingBottomM} * 100vw + #{$paddingBottomB});
+      }
+    }
+  }
+}
+
+// /**
+//  * АДАПТИВНЫЙ padding-LEFT
+//  * Возвращет адаптивный отступ(padding-left) между указанными размерами если они есть
+//  * @param {number} $paddingLeftLarge наибольший размер отступа слева
+//  * @param {number} $paddingLeftSmall наиеньший размер отступа слева
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-pl($paddingLeftLarge, $paddingLeftSmall, $widthLarge, $widthSmall) {
+  $paddingLeftM: false;
+  $paddingLeftB: false;
+
+  $checkChange: false;
+
+  // padding left
+  @if ($paddingLeftLarge != $paddingLeftSmall) {
+    $checkChange: true;
+    padding-left: $paddingLeftLarge;
+    $paddingLeftM: ($paddingLeftLarge - $paddingLeftSmall) / ($widthLarge - $widthSmall);
+    $paddingLeftB: $paddingLeftSmall - ($paddingLeftM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($paddingLeftM != false) {
+        padding-left: calc(#{$paddingLeftM} * 100vw + #{$paddingLeftB});
+      }
+    }
+  }
+}

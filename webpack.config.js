@@ -12,6 +12,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
+  public: path.resolve(__dirname, 'public'),
   dist: path.resolve(__dirname, 'dist')
 };
 
@@ -52,7 +53,8 @@ module.exports = {
   //context: PATHS.src, // Папка разработки
   entry: {
     index: `${PATHS.src}/js/pages/index.js`,
-    404: `${PATHS.src}/js/pages/404.js`
+    404: `${PATHS.src}/js/pages/404.js`,
+    'webfont-loaded': `${PATHS.src}/js/webfont-loaded.js`
   },
   output: {
     filename: './js/[name].js',
@@ -66,7 +68,7 @@ module.exports = {
       '@img': `${PATHS.src}/img`,
     }
   },
-  optimization: optimization(),
+  //optimization: optimization(),
   devServer: {
     contentBase: PATHS.dist,
     port: 8081,
@@ -104,26 +106,21 @@ module.exports = {
       //   to: './php'
       // },
       {
-        from: `${PATHS.src}/ht.access`,
+        from: `${PATHS.public}/ht.access`,
         to: './.ht[ext]'
       },
       {
-        from: `${PATHS.src}/configfile.xml`,
-        to: './configfile.[ext]'
-      },
-      {
-        from: `${PATHS.src}/manifest.json`,
-        to: './manifest.[ext]'
-      },
-      {
-        from: `${PATHS.src}/robots.txt`,
-        to: './robots.[ext]'
+        from: `${PATHS.public}/`,
+        to: './',
+        ignore: [
+          'ht.access',
+        ],
       },
       {
         from: `${PATHS.src}/js`,
         to: './js',
         ignore: [
-          'fontfaceobserver.js',
+          'webfont-loaded.js',
           '**/pages/**',
           '**/_module/**',
         ],
@@ -176,43 +173,6 @@ module.exports = {
           postcssLoader(),
         ]
       },
-      // Images
-      {
-        test: /\.(png|jpe?g|gif|webp)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'images',
-              name: '[name].[ext]',
-            },
-          },
-
-        ]
-      },
-      // Fonts
-      // {
-      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: "file-loader",
-      //   options: {
-      //     name: "[name].[ext]"
-      //   }
-      // },
-      // JS
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [['@babel/preset-env', {
-              debug: isDev === true ? true : false,
-              corejs: 3,
-              useBuiltIns: 'usage'
-            }]]
-          }
-        }
-      },
       // Sass or SCSS
       {
         test: /\.s[ac]ss$/i,
@@ -235,27 +195,21 @@ module.exports = {
               },
             },
           },
-
         ]
-
       },
-      // HTML
+      // Images
       {
-        test: /\.html$/i,
-        //include: /(header|footer|_elements|_menu)/,
-        include: [
-          path.resolve(__dirname, 'src/includes/'),
-          //`${PATHS.src}/includes/`
-        ],
+        test: /\.(png|jpe?g|gif|webp)$/i,
         use: [
           {
-            loader: 'raw-loader',
+            loader: 'file-loader',
             options: {
-              esModule: false,
+              outputPath: 'images',
+              name: '[name].[ext]',
             },
           },
 
-        ],
+        ]
       },
       // SVG Sprite
       {
@@ -276,9 +230,32 @@ module.exports = {
               disable: isDev === true ? true : false
             },
           },
-
         ]
-      }
+      },
+      // JS
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+        }
+      },
+      // HTML
+      {
+        test: /\.html$/i,
+        include: [
+          path.resolve(__dirname, 'src/includes/'),
+          //`${PATHS.src}/includes/`
+        ],
+        use: [
+          {
+            loader: 'raw-loader',
+            options: {
+              esModule: false,
+            },
+          },
+        ],
+      },
 
     ]
   }

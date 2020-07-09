@@ -1,42 +1,61 @@
 /* 
- * @package Basic site styles
- * ----------------------------------------- */
- 
+ * @package Site styles
+ * ------------------------------------------------------------- */
+
 // Переменные
-@import '_variables.scss';
+@import "_variables.scss";
+
+// Миксины
+@import "./_mixins/responsive-font.scss";
+@import "./_mixins/responsive-line-height.scss";
+@import "./_mixins/responsive-margin.scss";
+@import "./_mixins/responsive-padding.scss";
 
 // Библиотеки
-@import '_libs.scss';
+@import "_libs.scss";
 
 // Шрифты
-@import '_fonts.scss';
+@import "_fonts.scss";
 
-// Components
-@import '_classes/classes.scss';
+// Ready Classes
+@import "./_classes/fonts.scss";
 
 // Basic
-@import '_basic-content.scss';
+@import "_basic-content.scss";
+
+// Components
+@import "./_components/buttons.scss";
+@import "./_components/img.scss";
 
 // Media
 // @import '_media.scss';
 
-.logo {
-  width: 250px;
-  height: 160px;
-  background: url("../images/1.png") no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+/* 
+ * Header
+ */
+.top-line {
+  .top-line__content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: baseline;
+    & > h2 {
+      margin: 0 20px 0 0;
+      flex-shrink: 1;
+    }
+    & > nav {
+      ul {
+        display: flex;
+        padding-left: 0;
+        margin: 0;
+        li {
+          list-style-type: none;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
 }
-
-section {
-  display: block;
-  color: firebrick;
-  @include responsiveFont(30px, 13px, $break-lg, 320px);
-  @include row-flex();
-}
-
-body {
-  color: #ddd;
-}
-

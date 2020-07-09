@@ -1,0 +1,19 @@
+%ptb40 {
+  padding: 40px 0;
+  @media (max-width: 960px) {
+    padding: 30px 0;
+  }
+  @media (max-width: 640px) {
+    padding: 20px 0;
+  }
+}
+
+%mtb40 {
+  margin: 40px 0;
+  @media (max-width: 960px) {
+    margin: 30px 0;
+  }
+  @media (max-width: 640px) {
+    margin: 20px 0;
+  }
+}

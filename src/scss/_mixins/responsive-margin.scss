@@ -1,0 +1,247 @@
+// /**
+//  * АДАПТИВНЫЙ MARGIN
+//  * Возвращет адаптивный отступ(margin) между указанными размерами если они есть
+//  * @param {number} $marginTopLarge наибольший размер отступа сверху
+//  * @param {number} $marginRightLarge наибольший размер отступа справа
+//  * @param {number} $marginBottomLarge наибольший размер отступа снизу
+//  * @param {number} $marginLeftLarge наибольший размер отступа слева
+//  * @param {number} $marginTopSmall наименьший размер отступа сверху
+//  * @param {number} $marginRightSmall наименьший размер отступа справа
+//  * @param {number} $marginBottomSmall наименьший размер отступа снизу
+//  * @param {number} $marginLeftSmall наиеньший размер отступа слева
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-margin(
+  $marginTopLarge,
+  $marginRightLarge,
+  $marginBottomLarge,
+  $marginLeftLarge,
+  $marginTopSmall,
+  $marginRightSmall,
+  $marginBottomSmall,
+  $marginLeftSmall,
+  $widthLarge,
+  $widthSmall
+) {
+
+  $marginTopM: false;
+  $marginTopB: false;
+
+  $marginRightM: false;
+  $marginRightB: false;
+
+  $marginBottomM: false;
+  $marginBottomB: false;
+
+  $marginLeftM: false;
+  $marginLeftB: false;
+
+  $checkChange: false;
+
+  // margin top
+  @if ($marginTopLarge != $marginTopSmall) {
+    $checkChange: true;
+    margin-top: $marginTopLarge;
+    $marginTopM: ($marginTopLarge - $marginTopSmall) / ($widthLarge - $widthSmall);
+    $marginTopB: $marginTopSmall - ($marginTopM * $widthSmall);
+  }
+
+  // margin right
+  @if ($marginRightLarge != $marginRightSmall) {
+    $checkChange: true;
+    margin-right: $marginRightLarge;
+    $marginRightM: ($marginRightLarge - $marginRightSmall) / ($widthLarge - $widthSmall);
+    $marginRightB: $marginRightSmall - ($marginRightM * $widthSmall);
+  }
+
+  // margin bottom
+  @if ($marginBottomLarge != $marginBottomSmall) {
+    $checkChange: true;
+    margin-bottom: $marginBottomLarge;
+    $marginBottomM: ($marginBottomLarge - $marginBottomSmall) / ($widthLarge - $widthSmall);
+    $marginBottomB: $marginBottomSmall - ($marginBottomM * $widthSmall);
+  }
+
+  // margin left
+  @if ($marginLeftLarge != $marginLeftSmall) {
+    $checkChange: true;
+    margin-left: $marginLeftLarge;
+    $marginLeftM: ($marginLeftLarge - $marginLeftSmall) / ($widthLarge - $widthSmall);
+    $marginLeftB: $marginLeftSmall - ($marginLeftM * $widthSmall);
+  }
+  
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($marginTopM != false) {
+        margin-top: calc(#{$marginTopM} * 100vw + #{$marginTopB});
+      }
+      @if ($marginRightM != false) {
+        margin-right: calc(#{$marginRightM} * 100vw + #{$marginRightB});
+      }
+      @if ($marginBottomM != false) {
+        margin-bottom: calc(#{$marginBottomM} * 100vw + #{$marginBottomB});
+      }
+      @if ($marginLeftM != false) {
+        margin-left: calc(#{$marginLeftM} * 100vw + #{$marginLeftB});
+      }
+    }
+  }
+
+}
+
+
+// /**
+//  * АДАПТИВНЫЙ MARGIN-TOP
+//  * Возвращет адаптивный отступ(margin-top) между указанными размерами если они есть
+//  * @param {number} $marginTopLarge наибольший размер отступа сверху
+//  * @param {number} $marginTopSmall наименьший размер отступа сверху
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+ @mixin r-mt(
+  $marginTopLarge,
+  $marginTopSmall,
+  $widthLarge,
+  $widthSmall
+) {
+
+  $marginTopM: false;
+  $marginTopB: false;
+
+  $checkChange: false;
+
+  // margin top
+  @if ($marginTopLarge != $marginTopSmall) {
+    $checkChange: true;
+    margin-top: $marginTopLarge;
+    $marginTopM: ($marginTopLarge - $marginTopSmall) / ($widthLarge - $widthSmall);
+    $marginTopB: $marginTopSmall - ($marginTopM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($marginTopM != false) {
+        margin-top: calc(#{$marginTopM} * 100vw + #{$marginTopB});
+      }
+    }
+  }
+
+}
+
+
+// /**
+//  * АДАПТИВНЫЙ MARGIN-RIGHT
+//  * Возвращет адаптивный отступ(margin-right) между указанными размерами если они есть
+//  * @param {number} $marginRightLarge наибольший размер отступа справа
+//  * @param {number} $marginRightSmall наименьший размер отступа справа
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+ @mixin r-mr(
+  $marginRightLarge,
+  $marginRightSmall,
+  $widthLarge,
+  $widthSmall
+) {
+
+  $marginRightM: false;
+  $marginRightB: false;
+
+  $checkChange: false;
+
+  // margin right
+  @if ($marginRightLarge != $marginRightSmall) {
+    $checkChange: true;
+    margin-right: $marginRightLarge;
+    $marginRightM: ($marginRightLarge - $marginRightSmall) / ($widthLarge - $widthSmall);
+    $marginRightB: $marginRightSmall - ($marginRightM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($marginRightM != false) {
+        margin-right: calc(#{$marginRightM} * 100vw + #{$marginRightB});
+      }
+    }
+  }
+
+}
+
+// /**
+//  * АДАПТИВНЫЙ MARGIN-BOTTOM
+//  * Возвращет адаптивный отступ(margin-bottom) между указанными размерами если они есть
+//  * @param {number} $marginBottomLarge наибольший размер отступа снизу
+//  * @param {number} $marginBottomSmall наименьший размер отступа снизу
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+ @mixin r-mb(
+  $marginBottomLarge,
+  $marginBottomSmall,
+  $widthLarge,
+  $widthSmall
+) {
+
+  $marginBottomM: false;
+  $marginBottomB: false;
+
+  $checkChange: false;
+
+  // margin bottom
+  @if ($marginBottomLarge != $marginBottomSmall) {
+    $checkChange: true;
+    margin-bottom: $marginBottomLarge;
+    $marginBottomM: ($marginBottomLarge - $marginBottomSmall) / ($widthLarge - $widthSmall);
+    $marginBottomB: $marginBottomSmall - ($marginBottomM * $widthSmall);
+  }
+
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($marginBottomM != false) {
+        margin-bottom: calc(#{$marginBottomM} * 100vw + #{$marginBottomB});
+      }
+    }
+  }
+
+}
+
+
+// /**
+//  * АДАПТИВНЫЙ MARGIN-LEFT
+//  * Возвращет адаптивный отступ(margin-left) между указанными размерами если они есть
+//  * @param {number} $marginLeftLarge наибольший размер отступа слева
+//  * @param {number} $marginLeftSmall наиеньший размер отступа слева
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+ @mixin r-ml(
+  $marginLeftLarge,
+  $marginLeftSmall,
+  $widthLarge,
+  $widthSmall
+) {
+
+  $marginLeftM: false;
+  $marginLeftB: false;
+
+  $checkChange: false;
+
+  // margin left
+  @if ($marginLeftLarge != $marginLeftSmall) {
+    $checkChange: true;
+    margin-left: $marginLeftLarge;
+    $marginLeftM: ($marginLeftLarge - $marginLeftSmall) / ($widthLarge - $widthSmall);
+    $marginLeftB: $marginLeftSmall - ($marginLeftM * $widthSmall);
+  }
+  
+  @if ($checkChange == true) {
+    @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+      @if ($marginLeftM != false) {
+        margin-left: calc(#{$marginLeftM} * 100vw + #{$marginLeftB});
+      }
+    }
+  }
+
+}
+

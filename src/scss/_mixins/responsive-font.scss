@@ -1,0 +1,28 @@
+// /**
+//  * АДАПТИВНЫЙ ШРИФТ
+//  * Возвраащет адаптивный размер шрифта между указанными размерами
+//  * @param {number} $fontLarge большой размер шрифта
+//  * @param {number} $fontSmall маленький размер шрифта
+//  * @param {number} $widthLarge наибольшая ширина экрана
+//  * @param {number} $widthSmall наименьшая ширина экрана
+//  */
+@mixin r-fz($fontLarge, $fontSmall, $widthLarge, $widthSmall) {
+  // http://fvsch.com/code/css-locks/
+	// y = m * x + b - уравнение прямой, где:
+	// y - вертикальная ось с нужными нам шрифтами,
+	// x - горизонтальная ось с шириной экрана (вьюпорта),
+	// b - промежуток между пересечением графика (в данном случае это
+	// функция прямой линии) с вертикальной осью x,
+	// m - наклон прямой (степерь прироста координаты y при
+  // каждом увеличении вьюпорта на 1px);
+  
+  // m = (y2 - y1) / (x2 - x1)
+  $m: ($fontLarge - $fontSmall) / ($widthLarge - $widthSmall);
+  // b = y1 - m × x1
+  $b: $fontSmall - ($m * $widthSmall);
+
+  font-size: $fontLarge;
+  @media (min-width: $widthSmall) and (max-width: $widthLarge) {
+    font-size: calc(#{$m} * 100vw + #{$b});
+  }
+}

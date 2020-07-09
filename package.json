@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "browserslist": "cover 99.5%",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie 10"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "serve": "cross-env NODE_ENV=development webpack-dev-server --mode development",
     "stats": "webpack --profile --json > stats.json"
   },
   "repository": {
@@ -54,6 +58,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "normalize.css": "^8.0.1",
     "vanilla-lazyload": "^15.2.0"

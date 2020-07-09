@@ -52,19 +52,7 @@ function addSvgLocalStorage(window, document) {
     catch(e){}
 };
 
-function addDisplayNoneSvg() {
-  let arrBodyChildren = [...document.body.children];
-  arrBodyChildren.forEach(function(item) {
-    if (item.tagName === 'svg' && item.classList.length === 0 && item.attributes.length === 2) {
-      item.style.display = 'none';
-    }
-  })
-}
-
-addSvgLocalStorage(window, document);
-addDisplayNoneSvg();
-
-export {addSvgLocalStorage, addDisplayNoneSvg};
+export {addSvgLocalStorage};
 
 
 

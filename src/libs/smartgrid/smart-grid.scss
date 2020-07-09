@@ -19,15 +19,33 @@ $offset_sm_one_side: ($offset_sm / 2);
 $offset_xs_one_side: ($offset_xs / 2);
 
 $fields: 30px;
+$fields_lg: 30px;
+$fields_md: 30px;
 $fields_sm: 15px;
+$fields_xs: 15px;
 
 @mixin wrapper-full(){
     padding-left: $fields;
     padding-right: $fields;
 
+    @include lg-block(){
+        padding-left: $fields_lg;
+        padding-right: $fields_lg;
+    }
+
+    @include md-block(){
+        padding-left: $fields_md;
+        padding-right: $fields_md;
+    }
+
     @include sm-block(){
         padding-left: $fields_sm;
         padding-right: $fields_sm;
+    }
+
+    @include xs-block(){
+        padding-left: $fields_xs;
+        padding-right: $fields_xs;
     }
 }
 
@@ -430,4 +448,4 @@ $fields_sm: 15px;
         content: "";
         clear: both;
     }
-};
+}
